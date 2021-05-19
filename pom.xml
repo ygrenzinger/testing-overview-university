@@ -15,6 +15,7 @@
 	<description>Devoxx university around tests</description>
 	<properties>
 		<java.version>11</java.version>
+		<cucumber.version>6.10.4</cucumber.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -50,6 +51,20 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-junit</artifactId>
+			<version>${cucumber.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>${cucumber.version}</version>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>
