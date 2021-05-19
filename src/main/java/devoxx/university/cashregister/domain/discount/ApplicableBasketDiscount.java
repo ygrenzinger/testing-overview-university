@@ -1,4 +1,6 @@
-package devoxx.university.cashregister.model;
+package devoxx.university.cashregister.domain.discount;
+
+import devoxx.university.cashregister.domain.BasketItem;
 
 import java.util.List;
 

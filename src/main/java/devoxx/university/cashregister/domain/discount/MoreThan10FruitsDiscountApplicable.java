@@ -1,11 +1,18 @@
-package devoxx.university.cashregister.model.discount;
+package devoxx.university.cashregister.domain.discount;
 
-import devoxx.university.cashregister.model.ApplicableBasketDiscount;
-import devoxx.university.cashregister.model.BasketItem;
+import devoxx.university.cashregister.domain.BasketItem;
 
 import java.util.List;
 
 public class MoreThan10FruitsDiscountApplicable implements ApplicableBasketDiscount {
+
+    private static final MoreThan10FruitsDiscountApplicable instance = new MoreThan10FruitsDiscountApplicable();
+
+    private MoreThan10FruitsDiscountApplicable() { }
+
+    public static MoreThan10FruitsDiscountApplicable get() {
+        return instance;
+    }
 
     @Override
     public String getName() {
@@ -21,6 +28,6 @@ public class MoreThan10FruitsDiscountApplicable implements ApplicableBasketDisco
     public boolean isApplicable(List<BasketItem> fruits) {
         return fruits.stream()
                 .mapToLong(BasketItem::getQuantity)
-                .sum() > 5;
+                .sum() > 10;
     }
 }

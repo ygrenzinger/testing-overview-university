@@ -1,4 +1,4 @@
-package devoxx.university.cashregister.model;
+package devoxx.university.cashregister.domain;
 
 public class BasketItem {
 
@@ -16,13 +16,5 @@ public class BasketItem {
 
     public int getQuantity() {
         return quantity;
-    }
-
-    @Override
-    public String toString() {
-        return "BasketItem{" +
-                "name='" + name + '\'' +
-                ", quantity=" + quantity +
-                '}';
     }
 }

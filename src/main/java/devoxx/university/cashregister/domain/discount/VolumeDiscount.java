@@ -1,4 +1,4 @@
-package devoxx.university.cashregister.model;
+package devoxx.university.cashregister.domain.discount;
 
 public class VolumeDiscount {
     private final long threshold;

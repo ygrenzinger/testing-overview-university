@@ -1,4 +1,4 @@
-package devoxx.university.cashregister.model;
+package devoxx.university.cashregister.domain.discount;
 
 import java.util.Objects;
 
@@ -32,5 +32,13 @@ public class AppliedBasketDiscount {
     @Override
     public int hashCode() {
         return Objects.hash(name, amount);
+    }
+
+    @Override
+    public String toString() {
+        return "AppliedBasketDiscount{" +
+                "name='" + name + '\'' +
+                ", amount=" + amount +
+                '}';
     }
 }

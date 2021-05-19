@@ -1,24 +1,20 @@
-package devoxx.university.cashregister.service;
+package devoxx.university.cashregister.domain;
 
-import devoxx.university.cashregister.model.AppliedBasketDiscount;
-import devoxx.university.cashregister.model.BasketItem;
-import devoxx.university.cashregister.model.Receipt;
-import devoxx.university.cashregister.model.ReceiptItem;
-import devoxx.university.cashregister.repository.DiscountStore;
-import org.springframework.stereotype.Service;
+import devoxx.university.cashregister.domain.discount.AppliedBasketDiscount;
+import devoxx.university.cashregister.domain.discount.DiscountStore;
+import devoxx.university.cashregister.domain.fruit.FruitPrice;
 
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
-@Service
-public class CashRegisterService {
+public class CashRegister {
 
-    private final FruitPriceComputer fruitPriceComputer;
+    private final FruitPrice fruitPrice;
     private final DiscountStore discountStore;
 
-    public CashRegisterService(FruitPriceComputer fruitPriceComputer, DiscountStore discountStore) {
-        this.fruitPriceComputer = fruitPriceComputer;
+    public CashRegister(FruitPrice fruitPrice, DiscountStore discountStore) {
+        this.fruitPrice = fruitPrice;
         this.discountStore = discountStore;
     }
 
@@ -59,7 +55,7 @@ public class CashRegisterService {
     private ReceiptItem createReceiptItem(BasketItem item) {
         int number = item.getQuantity();
         String fruit = item.getName();
-        long total = fruitPriceComputer.getPriceWithDiscount(fruit, number);
+        long total = fruitPrice.getPriceWithDiscount(fruit, number, discountStore);
         return new ReceiptItem(fruit, number, total);
     }
 

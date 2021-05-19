@@ -1,8 +1,6 @@
-package devoxx.university.cashregister.repository;
+package devoxx.university.cashregister.infrastructure;
 
-import devoxx.university.cashregister.model.ApplicableBasketDiscount;
-import devoxx.university.cashregister.model.VolumeDiscount;
-import devoxx.university.cashregister.model.discount.MoreThan10FruitsDiscountApplicable;
+import devoxx.university.cashregister.domain.discount.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,11 +9,11 @@ import java.util.Optional;
 import java.util.TreeMap;
 
 @Service
-public class DiscountStore {
+public class InMemoryDiscountStore implements DiscountStore {
 
     private final Map<String, VolumeDiscount> discounts;
 
-    public DiscountStore() {
+    public InMemoryDiscountStore() {
         this.discounts = new TreeMap<>();
         this.discounts.put("Cerises", new VolumeDiscount(4));
         this.discounts.put("Bananes", new VolumeDiscount(2));
@@ -27,7 +25,8 @@ public class DiscountStore {
 
     public List<ApplicableBasketDiscount> getBasketDiscount() {
         return List.of(
-                new MoreThan10FruitsDiscountApplicable()
+                MoreThan10FruitsDiscountApplicable.get(),
+                MoreThan4DifferentFruitsDiscountApplicable.get()
         );
     }
 }

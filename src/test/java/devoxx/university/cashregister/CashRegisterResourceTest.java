@@ -14,7 +14,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class CashRegisterControllerTest {
+class CashRegisterResourceTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -29,7 +29,7 @@ class CashRegisterControllerTest {
                         "    \"quantity\": 3\n" +
                         "  },\n" +
                         "  {\n" +
-                        "    \"name\": \"Cerises\",\n" +
+                        "    \"name\": \"Fraises\",\n" +
                         "    \"quantity\": 6\n" +
                         "  },\n" +
                         "  {\n" +
@@ -47,12 +47,12 @@ class CashRegisterControllerTest {
         Assertions.assertNotNull(resultDOW);
         Assertions.assertEquals("{" +
                 "\"items\":[" +
-                "{\"fruit\":\"Pommes\",\"quantity\":3,\"total\":300}," +
-                "{\"fruit\":\"Cerises\",\"quantity\":6,\"total\":375}," +
-                "{\"fruit\":\"Bananes\",\"quantity\":3,\"total\":300}" +
+                "{\"fruit\":\"Pommes\",\"quantity\":3,\"total\":150}," +
+                "{\"fruit\":\"Fraises\",\"quantity\":6,\"total\":150}," +
+                "{\"fruit\":\"Bananes\",\"quantity\":3,\"total\":250}" +
                 "]," +
-                "\"discounts\":[{\"name\":\"More than 10 fruits\",\"amount\":200}]," +
-                "\"total\":775" +
+                "\"basketDiscounts\":[{\"name\":\"More than 10 fruits\",\"amount\":200}]," +
+                "\"total\":350" +
                 "}", resultDOW);
     }
 

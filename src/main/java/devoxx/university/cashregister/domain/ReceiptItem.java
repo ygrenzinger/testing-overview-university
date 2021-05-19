@@ -1,4 +1,4 @@
-package devoxx.university.cashregister.model;
+package devoxx.university.cashregister.domain;
 
 import java.util.Objects;
 
@@ -37,5 +37,14 @@ public class ReceiptItem {
     @Override
     public int hashCode() {
         return Objects.hash(fruit, quantity, total);
+    }
+
+    @Override
+    public String toString() {
+        return "ReceiptItem{" +
+                "fruit='" + fruit + '\'' +
+                ", quantity=" + quantity +
+                ", total=" + total +
+                '}';
     }
 }

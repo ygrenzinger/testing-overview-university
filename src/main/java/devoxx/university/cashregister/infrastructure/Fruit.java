@@ -1,4 +1,4 @@
-package devoxx.university.cashregister.model;
+package devoxx.university.cashregister.infrastructure;
 
 import javax.persistence.*;
 import java.util.Objects;
