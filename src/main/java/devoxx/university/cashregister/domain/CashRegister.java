@@ -19,10 +19,8 @@ public class CashRegister {
     }
 
     public Receipt editReceipt(List<BasketItem> basketItem) {
-        List<ReceiptItem> receiptItems = getPrices(basketItem);
-
-        List<AppliedBasketDiscount> basketDiscounts = getApplicableBasketDiscount(basketItem);
-
+        var receiptItems = getPrices(basketItem);
+        var basketDiscounts = getApplicableBasketDiscount(receiptItems);
         long total = sumFruits(receiptItems) - getTotalDiscount(basketDiscounts);
         return new Receipt(receiptItems, basketDiscounts, total);
     }
@@ -45,10 +43,10 @@ public class CashRegister {
                 .sum();
     }
 
-    private List<AppliedBasketDiscount> getApplicableBasketDiscount(List<BasketItem> basketItem) {
+    private List<AppliedBasketDiscount> getApplicableBasketDiscount(List<ReceiptItem> receiptItems) {
         return discountStore.getBasketDiscount().stream()
-                    .filter(discount -> discount.isApplicable(basketItem))
-                    .map(applicable -> new AppliedBasketDiscount(applicable.getName(), applicable.getAmount(basketItem)))
+                    .filter(discount -> discount.isApplicable(receiptItems))
+                    .map(applicable -> new AppliedBasketDiscount(applicable.getName(), applicable.getAmount(receiptItems)))
                     .collect(toList());
     }
 

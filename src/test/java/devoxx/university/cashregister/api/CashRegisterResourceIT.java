@@ -1,4 +1,4 @@
-package devoxx.university.cashregister;
+package devoxx.university.cashregister.api;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -14,7 +14,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class CashRegisterResourceTest {
+class CashRegisterResourceIT {
 
     @Autowired
     private MockMvc mockMvc;

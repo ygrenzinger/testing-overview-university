@@ -1,6 +1,6 @@
 package devoxx.university.cashregister.domain.discount;
 
-import devoxx.university.cashregister.domain.BasketItem;
+import devoxx.university.cashregister.domain.ReceiptItem;
 
 import java.util.List;
 
@@ -20,12 +20,15 @@ public class MoreThan4DifferentFruitsDiscountApplicable implements ApplicableBas
     }
 
     @Override
-    public long getAmount(List<BasketItem> fruits) {
+    public long getAmount(List<ReceiptItem> receiptItems) {
         return 100;
     }
 
     @Override
-    public boolean isApplicable(List<BasketItem> fruits) {
-        return fruits.stream().distinct().count() > 4;
+    public boolean isApplicable(List<ReceiptItem> receiptItems) {
+        return receiptItems.stream()
+                .map(ReceiptItem::getFruit)
+                .distinct()
+                .count() > 4;
     }
 }

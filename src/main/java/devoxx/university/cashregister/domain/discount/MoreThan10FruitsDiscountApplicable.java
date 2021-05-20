@@ -1,6 +1,7 @@
 package devoxx.university.cashregister.domain.discount;
 
 import devoxx.university.cashregister.domain.BasketItem;
+import devoxx.university.cashregister.domain.ReceiptItem;
 
 import java.util.List;
 
@@ -20,14 +21,14 @@ public class MoreThan10FruitsDiscountApplicable implements ApplicableBasketDisco
     }
 
     @Override
-    public long getAmount(List<BasketItem> fruits) {
+    public long getAmount(List<ReceiptItem> receiptItemss) {
         return 200;
     }
 
     @Override
-    public boolean isApplicable(List<BasketItem> fruits) {
-        return fruits.stream()
-                .mapToLong(BasketItem::getQuantity)
+    public boolean isApplicable(List<ReceiptItem> receiptItems) {
+        return receiptItems.stream()
+                .mapToLong(ReceiptItem::getQuantity)
                 .sum() > 10;
     }
 }

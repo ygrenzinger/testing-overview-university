@@ -1,12 +1,6 @@
-package devoxx.university.cashregister;
+package devoxx.university.cashregister.domain;
 
-import devoxx.university.cashregister.domain.BasketItem;
-import devoxx.university.cashregister.domain.CashRegister;
-import devoxx.university.cashregister.domain.ReceiptItem;
-import devoxx.university.cashregister.domain.discount.AppliedBasketDiscount;
-import devoxx.university.cashregister.domain.discount.MoreThan10FruitsDiscountApplicable;
-import devoxx.university.cashregister.domain.discount.MoreThan4DifferentFruitsDiscountApplicable;
-import devoxx.university.cashregister.domain.discount.VolumeDiscount;
+import devoxx.university.cashregister.domain.discount.*;
 import devoxx.university.cashregister.testutils.DiscountStoreForTest;
 import devoxx.university.cashregister.testutils.FruitPriceForTest;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,7 +17,7 @@ public class CashRegisterTest {
     public static final String POIRES = "Poire";
     public static final String FRAISES = "Fraises";
     public static final String BANANES = "Bananes";
-    public static final String ANANES = "Ananes";
+    public static final String ANANAS = "Ananas";
     private final FruitPriceForTest fruitPrice = new FruitPriceForTest();
     private final DiscountStoreForTest discountStore = new DiscountStoreForTest();
 
@@ -36,7 +30,7 @@ public class CashRegisterTest {
         fruitPrice.fruitPrice(POMMES, 50);
         fruitPrice.fruitPrice(POIRES, 75);
         fruitPrice.fruitPrice(BANANES, 125);
-        fruitPrice.fruitPrice(ANANES, 200);
+        fruitPrice.fruitPrice(ANANAS, 200);
 
         discountStore.clear();
     }
@@ -123,13 +117,28 @@ public class CashRegisterTest {
                 new BasketItem(POIRES, 1),
                 new BasketItem(FRAISES, 1),
                 new BasketItem(BANANES, 1),
-                new BasketItem(ANANES, 1)
+                new BasketItem(ANANAS, 1)
         );
 
         var receipt = cashRegister.editReceipt(basket);
 
         assertThat(receipt.getBasketDiscounts()).containsExactly(new AppliedBasketDiscount("More than 4 different fruits", 100));
         assertThat(receipt.getTotal()).isEqualTo(375);
+    }
+
+    @Test
+    void should_return_the_price_without_any_discount_applied() {
+        discountStore.addBasketDiscount(MoreThan10FruitsDiscountApplicable.get());
+        discountStore.addBasketDiscount(MoreThan4DifferentFruitsDiscountApplicable.get());
+        discountStore.addBasketDiscount(LocalFruitsDiscount.get());
+        var basket = List.of(
+                new BasketItem(ANANAS, 1)
+        );
+
+        var receipt = cashRegister.editReceipt(basket);
+
+        assertThat(receipt.getBasketDiscounts()).isEmpty();
+        assertThat(receipt.getTotal()).isEqualTo(200);
     }
 
 }

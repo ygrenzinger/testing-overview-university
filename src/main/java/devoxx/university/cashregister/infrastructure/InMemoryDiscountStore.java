@@ -26,7 +26,8 @@ public class InMemoryDiscountStore implements DiscountStore {
     public List<ApplicableBasketDiscount> getBasketDiscount() {
         return List.of(
                 MoreThan10FruitsDiscountApplicable.get(),
-                MoreThan4DifferentFruitsDiscountApplicable.get()
+                MoreThan4DifferentFruitsDiscountApplicable.get(),
+                LocalFruitsDiscount.get()
         );
     }
 }
