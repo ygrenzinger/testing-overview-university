@@ -52,7 +52,7 @@ public class CashRegisterService {
     private List<AppliedBasketDiscount> getApplicableBasketDiscount(List<BasketItem> basketItem) {
         return discountStore.getBasketDiscount().stream()
                     .filter(discount -> discount.isApplicable(basketItem))
-                    .map(applicable -> new AppliedBasketDiscount(applicable.getName(), applicable.getAmount(basketItem)))
+                    .map(applicable -> new AppliedBasketDiscount(applicable.getName(), applicable.getAmount()))
                     .collect(toList());
     }
 
