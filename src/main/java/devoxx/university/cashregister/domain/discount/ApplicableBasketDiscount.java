@@ -8,7 +8,7 @@ public interface ApplicableBasketDiscount {
 
     String getName();
 
-    long getAmount(List<BasketItem> fruits);
+    long getAmount();
 
     boolean isApplicable(List<BasketItem> fruits);
 }

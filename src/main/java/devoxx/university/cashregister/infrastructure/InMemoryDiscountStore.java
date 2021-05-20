@@ -19,6 +19,10 @@ public class InMemoryDiscountStore implements DiscountStore {
         this.discounts.put("Bananes", new VolumeDiscount(2));
     }
 
+    public void addVolumeDiscount(String name, int threshold) {
+        this.discounts.put(name, new VolumeDiscount(threshold));
+    }
+
     public Optional<VolumeDiscount> getVolumeDiscount(String fruit) {
         return Optional.ofNullable(discounts.get(fruit));
     }

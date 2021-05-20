@@ -20,7 +20,7 @@ public class MoreThan10FruitsDiscountApplicable implements ApplicableBasketDisco
     }
 
     @Override
-    public long getAmount(List<BasketItem> fruits) {
+    public long getAmount() {
         return 200;
     }
 

@@ -1,8 +1,5 @@
-package devoxx.university.cashregister;
+package devoxx.university.cashregister.domain;
 
-import devoxx.university.cashregister.domain.BasketItem;
-import devoxx.university.cashregister.domain.CashRegister;
-import devoxx.university.cashregister.domain.ReceiptItem;
 import devoxx.university.cashregister.domain.discount.AppliedBasketDiscount;
 import devoxx.university.cashregister.domain.discount.MoreThan10FruitsDiscountApplicable;
 import devoxx.university.cashregister.domain.discount.MoreThan4DifferentFruitsDiscountApplicable;
@@ -23,7 +20,8 @@ public class CashRegisterTest {
     public static final String POIRES = "Poire";
     public static final String FRAISES = "Fraises";
     public static final String BANANES = "Bananes";
-    public static final String ANANES = "Ananes";
+    public static final String ANANAS = "Ananas";
+
     private final FruitPriceForTest fruitPrice = new FruitPriceForTest();
     private final DiscountStoreForTest discountStore = new DiscountStoreForTest();
 
@@ -31,14 +29,13 @@ public class CashRegisterTest {
 
     @BeforeEach
     public void beforeEach() {
+        discountStore.clear();
         fruitPrice.clear();
         fruitPrice.fruitPrice(FRAISES, 25);
         fruitPrice.fruitPrice(POMMES, 50);
         fruitPrice.fruitPrice(POIRES, 75);
         fruitPrice.fruitPrice(BANANES, 125);
-        fruitPrice.fruitPrice(ANANES, 200);
-
-        discountStore.clear();
+        fruitPrice.fruitPrice(ANANAS, 200);
     }
 
     @Test
@@ -95,7 +92,6 @@ public class CashRegisterTest {
 
         var receipt = cashRegister.editReceipt(fruits);
 
-
         assertThat(receipt.getItems()).containsExactly(
                 new ReceiptItem(POMMES, 2, 50),
                 new ReceiptItem(BANANES, 3, 250)
@@ -123,7 +119,7 @@ public class CashRegisterTest {
                 new BasketItem(POIRES, 1),
                 new BasketItem(FRAISES, 1),
                 new BasketItem(BANANES, 1),
-                new BasketItem(ANANES, 1)
+                new BasketItem(ANANAS, 1)
         );
 
         var receipt = cashRegister.editReceipt(basket);

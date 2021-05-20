@@ -20,7 +20,7 @@ public class MoreThan4DifferentFruitsDiscountApplicable implements ApplicableBas
     }
 
     @Override
-    public long getAmount(List<BasketItem> fruits) {
+    public long getAmount() {
         return 100;
     }
 

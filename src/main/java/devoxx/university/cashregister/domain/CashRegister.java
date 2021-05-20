@@ -3,6 +3,7 @@ package devoxx.university.cashregister.domain;
 import devoxx.university.cashregister.domain.discount.AppliedBasketDiscount;
 import devoxx.university.cashregister.domain.discount.DiscountStore;
 import devoxx.university.cashregister.domain.fruit.FruitPrice;
+import devoxx.university.cashregister.infrastructure.InMemoryDiscountStore;
 
 import java.util.List;
 
@@ -16,6 +17,9 @@ public class CashRegister {
     public CashRegister(FruitPrice fruitPrice, DiscountStore discountStore) {
         this.fruitPrice = fruitPrice;
         this.discountStore = discountStore;
+        if (discountStore instanceof InMemoryDiscountStore) {
+            ((InMemoryDiscountStore) discountStore).addVolumeDiscount("Cerises", 2);
+        }
     }
 
     public Receipt editReceipt(List<BasketItem> basketItem) {
@@ -48,7 +52,7 @@ public class CashRegister {
     private List<AppliedBasketDiscount> getApplicableBasketDiscount(List<BasketItem> basketItem) {
         return discountStore.getBasketDiscount().stream()
                     .filter(discount -> discount.isApplicable(basketItem))
-                    .map(applicable -> new AppliedBasketDiscount(applicable.getName(), applicable.getAmount(basketItem)))
+                    .map(applicable -> new AppliedBasketDiscount(applicable.getName(), applicable.getAmount()))
                     .collect(toList());
     }
 
