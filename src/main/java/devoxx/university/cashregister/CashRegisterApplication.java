@@ -3,8 +3,6 @@ package devoxx.university.cashregister;
 import devoxx.university.cashregister.domain.CashRegister;
 import devoxx.university.cashregister.domain.discount.DiscountStore;
 import devoxx.university.cashregister.domain.fruit.FruitPrice;
-import devoxx.university.cashregister.infrastructure.FruitPriceRepository;
-import devoxx.university.cashregister.infrastructure.FruitRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.flyway.FlywayDataSource;

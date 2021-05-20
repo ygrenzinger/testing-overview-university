@@ -1,6 +1,9 @@
 package devoxx.university.cashregister.api;
 
+import devoxx.university.fruits.FruitController;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -18,6 +21,18 @@ class CashRegisterResourceIT {
 
     @Autowired
     private MockMvc mockMvc;
+
+    private static final FruitController FRUIT_CONTROLLER_MOCK = new FruitController();
+
+    @BeforeAll
+    public static void beforeAll() {
+        FRUIT_CONTROLLER_MOCK.start();
+    }
+
+    @AfterAll
+    public static void afterAll() {
+        FRUIT_CONTROLLER_MOCK.start();
+    }
 
     @Test
     public void testing_receipt() throws Exception {
