@@ -1,21 +1,12 @@
 package devoxx.university.cashregister.infrastructure;
 
-import javax.persistence.*;
 import java.util.Objects;
 
-@Entity
-@Table(name = "FRUIT")
+
 public class Fruit {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
     private long id;
-
-    @Column(name = "NAME")
     private String name;
-
-    @Column(name = "PRICE")
     private long price;
 
     public long getId() {
