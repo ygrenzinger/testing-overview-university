@@ -1,4 +1,12 @@
 Feature: The discount on fruits
+  ====
+  [quote]
+  ____
+  In order to increase sales
+  As a fruit seller
+  I want the cash register to take into account volume discount like 1 free for X units bought
+  ____
+  ====
 
   Background: :
     Given the price of a Cerises is 75
