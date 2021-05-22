@@ -22,14 +22,16 @@ public class LocalFruitsDiscount implements ApplicableBasketDiscount {
         return "Local fruits";
     }
 
+    // tag::rules[]
     @Override
-    public long getAmount(List<ReceiptItem> receiptItems) {
+    public long getAmount(List<ReceiptItem> receiptItems) { //<2>
         var total = receiptItems.stream().mapToLong(ReceiptItem::getTotal).sum();
         return (total * 20) / 100;
     }
 
     @Override
-    public boolean isApplicable(List<ReceiptItem> receiptItems) {
+    public boolean isApplicable(List<ReceiptItem> receiptItems) { //<1>
         return receiptItems.stream().map(ReceiptItem::getFruit).allMatch(LOCAL_FRUITS::contains);
     }
+    // end::rules[]
 }

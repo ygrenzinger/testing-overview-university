@@ -1,4 +1,12 @@
 Feature: Create the receipt of a basket
+  ====
+  [quote]
+  ____
+  In order to invoice my clients
+  As a fruit seller
+  I want the cash register to give me a receipt.
+  ____
+  ====
 
   Scenario: Nothing is in the basket
     Given the basket is empty

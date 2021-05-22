@@ -1,4 +1,21 @@
 Feature: Basket level discounts
+  ====
+  [quote]
+  ____
+  In order to increase sales
+  As a fruit seller
+  I want the cash register to handle specific discount at basket level
+  ____
+  ====
+
+  [source, java]
+  -----
+  public class LocalFruitsDiscount implements ApplicableBasketDiscount {
+  include::../../src/main/java/devoxx/university/cashregister/domain/discount/LocalFruitsDiscount.java[tags=rules]
+  }
+  -----
+  <1> isApplicable tells if the discount can be applied to basket
+  <2> getAmount gives the amount. Here depending on the total price without basket discount
 
   Background:
     Given the price of fruits are:
@@ -30,6 +47,7 @@ Feature: Basket level discounts
     And the receipt total is 575
 
   Scenario: having the "Local fruits" discount
+
     Given there is a local fruits discount
     And the basket contains:
       | Pommes  | 2 |
