@@ -4,3 +4,6 @@
 
 # build
 target/
+
+.jqwik-database
+.DS_Store
