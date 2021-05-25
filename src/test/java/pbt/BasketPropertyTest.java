@@ -11,6 +11,7 @@ import devoxx.university.cashregister.testutils.DiscountStoreForTest;
 import devoxx.university.cashregister.testutils.FruitPriceForTest;
 import net.jqwik.api.Arbitraries;
 import net.jqwik.api.Arbitrary;
+import net.jqwik.api.Combinators;
 import net.jqwik.api.ForAll;
 import net.jqwik.api.From;
 import net.jqwik.api.Property;
@@ -45,11 +46,11 @@ public class BasketPropertyTest {
         this.discountStore.addBasketDiscount(LocalFruitsDiscount.get());
     }
 
-    @Provide("basket item")
     Arbitrary<BasketItem> randomBasketItem() {
-        return Arbitraries.of(POMMES, POIRES, FRAISES)
-                .flatMap((String fruit) -> Arbitraries.integers().between(1, 10).map(quantity -> Tuple.of(fruit, quantity)))
-                .map(tuple -> new BasketItem(tuple.get1(), tuple.get2()));
+        return Combinators.combine(
+                Arbitraries.of(POMMES, POIRES, FRAISES),
+                Arbitraries.integers().between(1, 10)
+        ).as(BasketItem::new);
     }
 
     @Provide("basket")
