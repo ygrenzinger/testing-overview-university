@@ -21,7 +21,7 @@ Feature: The discount on fruits
 
     Examples:
       | fruit   | volume | total |
-      | Cerises | 3      | 150   |
+      | Cerises | 2      | 150   |
       | Cerises | 3      | 150   |
       | Cerises | 4      | 225   |
       | Cerises | 6      | 300   |
